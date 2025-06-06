@@ -25,7 +25,7 @@ class Currency:
 
         self.root = root
         self.root.title("Währungsrechner")
-        self.root.minsize(200,100)
+        self.root.minsize(200,100)  # Hier wird die Mindestgröße des Fensters festgelegt
 
         # Entry-Felder
         self.entry = tk.Entry(root)
@@ -33,21 +33,25 @@ class Currency:
 
         # Dropdownmenus
         self.dropmenu1 = tk.OptionMenu(root, self.variable1, *self.currencies.keys())
+        self.dropmenu1.config(bg="#3399ff", activebackground="#3399ff")
+        self.dropmenu1["menu"].config(bg="#3399ff")
         self.dropmenu1.grid(column=0,row=0,pady=5)
         
         self.dropmenu2 = tk.OptionMenu(root, self.variable2, *self.currencies.keys())
+        self.dropmenu2.config(bg="#3399ff", activebackground="#3399ff")
+        self.dropmenu2["menu"].config(bg="#3399ff")
         self.dropmenu2.grid(column=0,row=2,pady=5)
 
         # Button
-        self.button = tk.Button(root, text="Umrechnen", command=self.umrechnung)
+        self.button = tk.Button(root, text="Umrechnen", command=self.umrechnung, bg="#3399ff")
         self.button.grid(row=1,pady=5)
 
         # Language Switch
-        self.language_button = tk.Button(root, text="English", command=self.switch_language)
+        self.language_button = tk.Button(root, text="English", command=self.switch_language, bg="#3399ff")
         self.language_button.grid(row=3,pady=5)
 
         # Label für Ausgabe
-        self.output_label = tk.Label(root, text="")
+        self.output_label = tk.Label(root, text="", font=("Arial", 14))
         self.output_label.grid(column=1,row=2,pady=5)
 
 
@@ -71,7 +75,7 @@ class Currency:
         if self.language == "Deutsch":
             self.language = "English"
 
-            self.button.config(text="Convert")
+            self.button.config(text="Convert", bg="#3399ff")
             self.language_button.config(text="Deutsch")
             self.root.title("Currency Converter")
 
@@ -89,7 +93,7 @@ class Currency:
 
 
 if __name__ == "__main__":
-    root = tk.Tk()
+    root = tk.Tk()              # Hier wird das Fenster erstellt
     gui = Currency(root)
     root.mainloop()
 
