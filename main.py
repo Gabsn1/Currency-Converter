@@ -3,12 +3,14 @@ import tkinter as tk
 class Currency:
 
     def __init__(self, root):
+        self.root = root
         self.language = "Deutsch"
         self.variable1 = tk.StringVar(root)
         self.variable1.set("EUR")
 
         self.variable2 = tk.StringVar(root)
         self.variable2.set("USD")
+        root.geometry("330x230")
 
         self.currencies = {
         "USD": 1.13,   # US-Dollar
@@ -44,7 +46,7 @@ class Currency:
 
         # Language Switch
         self.language_button = tk.Button(root, text="English", command=self.switch_language)
-        self.language_button.grid(row=3,pady=5)
+        self.language_button.grid(row=0,padx=5,column=3)
 
         # Label für Ausgabe
         self.output_label = tk.Label(root, text="")
@@ -64,8 +66,10 @@ class Currency:
         except ValueError:
             if self.language == "Deutsch":
                 self.output_label.config(text="Keine Zahl")
-            else:
+            elif self.language == "English":
                 self.output_label.config(text="No Number")
+            else:
+                self.output_label.config(text="不是一個數字")
     
     def switch_language(self):
         if self.language == "Deutsch":
@@ -75,14 +79,19 @@ class Currency:
             self.language_button.config(text="Deutsch")
             self.root.title("Currency Converter")
 
+        elif self.language == "English":
+            self.language = "Chinesisch"
+
+            self.button.config(text="轉變")
+            self.language_button.config(text="中文")
+            self.root.title("貨幣轉換器")
+
         else:
             self.language = "Deutsch"
 
             self.button.config(text="Umrechnen")
             self.language_button.config(text="English")
             self.root.title("Währungsrechner")
-        
-
 
 
 
